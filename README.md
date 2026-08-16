@@ -44,9 +44,9 @@ fitness-exercise-ml-recommender/
 
 | Model | Accuracy | Weighted F1-Score | Güçlü Yönü |
 | --- | --- | --- | --- |
-| **Random Forest** | **%96.2** | **0.960** | Metin ve kategorik özelliklerde en yüksek karmaşık ilişki yakalama başarımı |
-| **Logistic Regression** | %94.7 | 0.943 | Hızlı eğitim, yüksek boyutlu seyrek verilerde tutarlı başarım |
-| **KNN (k=5)** | %87.9 | 0.875 | Basit mesafe tabanlı sınıflandırma |
+| **Random Forest** | **%93,6** | **0,930** | Metin ve kategorik özelliklerde en yüksek karmaşık ilişki yakalama başarımı |
+| **Logistic Regression** | %88,3 | 0,880 | Hızlı eğitim, yüksek boyutlu seyrek verilerde tutarlı başarım |
+| **KNN (k=5)** | %81,2 | 0,800 | Basit mesafe tabanlı sınıflandırma |
 
 ---
 
