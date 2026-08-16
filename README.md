@@ -14,9 +14,9 @@ Bu proje, **1.324 fitness egzersizi** içeren zengin bir veri seti üzerinde Do�
 - **1.324 Egzersiz Verisi:** Hedef kas grupları, ekipmanlar, ikincil kaslar ve 10 dilde adım adım talimatlar.
 - **NLP & TF-IDF Özellik Mühendisliği:** Metin verilerinin 500 boyutlu sayısal matrislere ve ekipman verilerinin One-Hot Encoding ile vektör uzayına dönüştürülmesi.
 - **Sınıflandırma Modelleri (Supervised Learning):**
-  - **Random Forest Classifier (Accuracy: %96.2 | Weighted F1: 0.960)**
-  - **Logistic Regression (Accuracy: %94.7 | Weighted F1: 0.943)**
-  - **KNN (k=5) (Accuracy: %87.9 | Weighted F1: 0.875)**
+  - **Random Forest Classifier (Accuracy: %93,6| Weighted F1: 0.930)**
+  - **Logistic Regression (Accuracy: %88,3 | Weighted F1: 0.880)**
+  - **KNN (k=5) (Accuracy: %81,2 | Weighted F1: 0,800)**
 - **İçerik Tabanlı Öneri Motoru (Unsupervised Learning):** Cosine Similarity kullanarak sakatlık, ekipman kısıtı veya alternatif arayışına yönelik anında akıllı öneri üretme.
 
 ---
