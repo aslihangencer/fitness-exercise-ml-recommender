@@ -73,7 +73,7 @@ Repo içerisinde yer alan `fitness_exercise_ml_recommender.ipynb` dosyasını Go
 ---
 
 ## 🤝 Katkıda Bulunma
-Her türlü katkıya ve fikir önerisine açığız! Pull Request açabilir veya Issue oluşturabilirsiniz.
+Her türlü katkıya ve fikir önerisine açığım! Pull Request açabilir veya Issue oluşturabilirsiniz.
 
 ## 📄 Lisans
 Bu proje MIT Lisansı ile lisanslanmıştır.
