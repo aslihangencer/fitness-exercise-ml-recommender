@@ -58,7 +58,7 @@ Repo içerisinde yer alan `fitness_exercise_ml_recommender.ipynb` dosyasını Go
 ### Yerel Ortamda Çalıştırma (Local)
 1. Repoyu klonlayın:
    ```bash
-   git clone https://github.com/KULLANICI_ADI/fitness-exercise-ml-recommender.git
+   git clone https://github.com/aslihangencer/fitness-exercise-ml-recommender.git
    cd fitness-exercise-ml-recommender
    ```
 2. Gerekli kütüphaneleri yükleyin:
