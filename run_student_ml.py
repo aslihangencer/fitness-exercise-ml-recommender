@@ -1,5 +1,4 @@
 import json
-import os
 import urllib.request
 import pandas as pd
 import numpy as np
@@ -11,16 +10,14 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix
+from sklearn.metrics import accuracy_score, precision_recall_fscore_support, confusion_matrix, classification_report
 from sklearn.metrics.pairwise import cosine_similarity
 
-os.makedirs('exercise_recommender_ml/images', exist_ok=True)
-
-# 1. Veri İndirme ve Yükleme
+# 1. Veriyi İndirme ve Yükleme
 url = "https://raw.githubusercontent.com/hasaneyldrm/exercises-dataset/main/data/exercises.json"
-urllib.request.urlretrieve(url, "exercise_recommender_ml/exercises.json")
+urllib.request.urlretrieve(url, "exercises.json")
 
-with open("exercise_recommender_ml/exercises.json", "r", encoding="utf-8") as f:
+with open("exercises.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 df = pd.DataFrame(data)
@@ -36,12 +33,12 @@ def get_instruction_en(inst):
 df["clean_instructions"] = df["instructions"].apply(get_instruction_en)
 df["text_data"] = df["name"].fillna("") + " " + df["clean_instructions"].fillna("")
 
-print("Toplam Egzersiz Sayısı:", len(df))
+print("Egzersiz Sayısı:", len(df))
 print("\nKategori Dağılımı:\n", df["category"].value_counts())
 print("\nTop 5 Ekipman:\n", df["equipment"].value_counts().head(5))
 
 bodyweight_count = (df["equipment"].str.lower() == "body weight").sum()
-print(f"\nBody Weight Egzersiz Sayısı: {bodyweight_count}")
+print("\nBody Weight Egzersiz Sayısı:", bodyweight_count)
 
 # 2. EDA Grafikleri
 plt.figure(figsize=(10, 5))
@@ -50,7 +47,7 @@ plt.title("Vücut Bölgelerine Göre Egzersiz Sayısı")
 plt.xlabel("Egzersiz Sayısı")
 plt.ylabel("Vücut Bölgesi (Category)")
 plt.tight_layout()
-plt.savefig("exercise_recommender_ml/images/01_category_distribution.png")
+plt.savefig("images/01_category_distribution.png")
 plt.close()
 
 plt.figure(figsize=(10, 5))
@@ -60,7 +57,7 @@ plt.title("En Çok Kullanılan 10 Ekipman")
 plt.xlabel("Egzersiz Sayısı")
 plt.ylabel("Ekipman Türü")
 plt.tight_layout()
-plt.savefig("exercise_recommender_ml/images/02_equipment_distribution.png")
+plt.savefig("images/02_equipment_distribution.png")
 plt.close()
 
 # 3. TF-IDF ve Veri Bölme
@@ -80,7 +77,6 @@ models = {
 }
 
 results = []
-rf_pred = None
 
 for name, model in models.items():
     model.fit(X_train, y_train)
@@ -114,7 +110,7 @@ plt.xlabel("Tahmin Edilen Sınıf")
 plt.ylabel("Gerçek Sınıf")
 plt.xticks(rotation=45, ha="right")
 plt.tight_layout()
-plt.savefig("exercise_recommender_ml/images/05_confusion_matrix.png")
+plt.savefig("images/05_confusion_matrix.png")
 plt.close()
 
 # Model Karşılaştırma Grafiği
@@ -123,7 +119,7 @@ sns.barplot(x="Model", y="Accuracy", data=results_df, palette="Set2")
 plt.title("Modellerin Accuracy (Doğruluk) Karşılaştırması")
 plt.ylim(0.5, 1.0)
 plt.tight_layout()
-plt.savefig("exercise_recommender_ml/images/04_model_comparison.png")
+plt.savefig("images/04_model_comparison.png")
 plt.close()
 
 # 5. İçerik Tabanlı Öneri Sistemi (Cosine Similarity)
@@ -142,7 +138,7 @@ def get_recommendations(exercise_name, top_n=3):
     
     recommended_indices = [i[0] for i in sim_scores if i[0] != idx][:top_n]
     
-    recs = df.iloc[recommended_indices][["name", "category", "equipment"]].copy()
+    recs = df.iloc[recommended_indices][["name", "category", "equipment"]]
     recs["Benzerlik Skoru"] = [round(sim_scores[i][1], 4) for i in recommended_indices]
     
     print(f"\nSeçilen Egzersiz: {target_exercise['name']} ({target_exercise['category']})")
